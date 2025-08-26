@@ -2,7 +2,7 @@ table 71116 teacher
 {
     Caption = 'teacher';
     DataClassification = ToBeClassified;
-
+    //sdfghjklşi
     fields
     {
         field(1; "teacherId"; code[20])
