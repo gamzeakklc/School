@@ -15,16 +15,15 @@ page 71120 departmans
                 field(departmentID; Rec.departmentdID)
                 {
                     Caption = 'departmanID';
+                    ToolTip = 'Specifies the value of the departmentdID field.', Comment = '%';
                 }
                 field(departmentName; Rec.departmentName)
                 {
                     Caption = 'departmentname';
-
                 }
                 field(LessonsName; Rec.LessonsName)
                 {
                     Caption = 'departmanLessons';
-
                 }
             }
         }

@@ -3,7 +3,6 @@ table 71126 schoolsetup
     Caption = 'schoolsetup';
     DataClassification = ToBeClassified;
    
-    
         fields
         {
             field(1; "Primary Key"; Code[10])
@@ -11,38 +10,48 @@ table 71126 schoolsetup
               Caption='setup tablonda her zaman PK alani olmak zorunda.';
             }
     
-            //You might want to add fields here
     field(3; "Teacher No-Series"; Code[20])
     {
+        Caption='Teacher No-Series';
         DataClassification = ToBeClassified;
         TableRelation="No. Series";
     }
     field(4; "Department No-Series"; Code[20])
     {
+        Caption='Department No-Series';
         DataClassification = ToBeClassified;
-                TableRelation="No. Series";
+        TableRelation="No. Series";
 
     }
     field(5; "Lessons No-Series"; Code[20])
     {
+        Caption='Lessons No-Series';
         DataClassification = ToBeClassified;
-                TableRelation="No. Series";
+        TableRelation="No. Series";
 
     }
     field(6; "Notes No-Series"; Code[20])
     {
+        Caption='Notes No-Series';
         DataClassification = ToBeClassified;
-                TableRelation="No. Series";
+        TableRelation="No. Series";
 
     }
     field(7; "Exams No-Series"; Code[20])
     {
+        Caption='Exams No-Series';
         DataClassification = ToBeClassified;
-                TableRelation="No. Series";
+        TableRelation="No. Series";
 
     }
     field(8; "student No-Series"; Code[20])
     {
+        Caption='Student No-Series';
+        DataClassification = ToBeClassified;
+    }
+     field(9; "Notesbystudent No-Series"; Code[20])
+    {
+        Caption='Notesbystudent No-Series';
         DataClassification = ToBeClassified;
     }
 

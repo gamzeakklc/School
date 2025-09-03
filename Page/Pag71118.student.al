@@ -15,33 +15,38 @@ page 71118 student
             {
                 field(studentno; Rec.studentno)
                 {
+                    Caption = 'student no.';
+                    ApplicationArea = all;
                 }
                 field(studentname; Rec.studentname)
                 {
+                    Caption = 'student name.';
+                    ApplicationArea = all;
                 }
                 field(studentsurname; Rec.studentsurname)
                 {
-
+                    Caption = 'student surname.';
+                    ApplicationArea = all;
                 }
                 field(departmentofstudent; Rec.departmentofstudent)
                 {
-
+                    Caption = 'departmentofstudent.';
+                    ApplicationArea = all;
                 }
                 field(studentlessons; Rec.studentlessons)
                 {
-
-                }
-                field(studentnotes; Rec.studentnotes)
-                {
-
+                    Caption = 'studentlessons.';
+                    ApplicationArea = all;
                 }
                 field(MailAddress; Rec.MailAddress)
                 {
-
+                    Caption = 'mail address.';
+                    ApplicationArea = all;
                 }
                 field(registrationdate; Rec.registrationdate)
                 {
-
+                    Caption = 'registrationdate.';
+                    ApplicationArea = all;
                 }
 
             }
@@ -61,7 +66,6 @@ page 71118 student
                     trigger OnAction()
                     begin
                         showourinformation();
-
                     end;
                 }
             }

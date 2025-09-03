@@ -11,18 +11,31 @@ page 71129 notescard
         {
             group(General)
             {
-                Caption = 'General';
+                Caption = 'notescard';
                 field(exam1; Rec.exam1)
                 {
+                    Caption = 'exam1.';
+                    ApplicationArea = all;
                 }
                 field(exam2; Rec.exam2)
                 {
+                    Caption = 'exam2.';
+                    ApplicationArea = all;
                 }
                 field("final exam"; Rec."final exam")
                 {
+                    Caption = 'finalexam.';
+                    ApplicationArea = all;
                 }
-                field(examID; Rec.examID)
+                field("Student No."; Rec."Student No.")
                 {
+                    Caption = 'student no.';
+                    ApplicationArea = all;
+                }
+                field("Lesson No."; Rec."Lesson No.")
+                {
+                    Caption = 'lesson no.';
+                    ApplicationArea = all;
                 }
             }
         }

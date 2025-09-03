@@ -1,20 +1,6 @@
-tableextension 71103 notes extends notes
+/*tableextension 71103 notes extends notes
 {
     fields
-    {
-        field(2222; "average"; Integer)
-        {
-            DataClassification = ToBeClassified;
-            Caption = 'Student Average.';
-            Editable = false;
-        }
-
-        field(223; "letter grade"; Code[20])
-        {
-            Editable = false;
-            Caption = 'letter grade';
-        }
-
     }
     local procedure CalculateNotes()
     var
@@ -88,7 +74,7 @@ tableextension 71103 notes extends notes
         else    
         Message('');
     end;
-}
+}*/
      
      
      

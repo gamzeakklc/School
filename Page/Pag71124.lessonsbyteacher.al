@@ -15,10 +15,12 @@ page 71124 lessonsbyteacher
                 field(teacher; Rec.teacher)
                 {
                     ToolTip = 'teacher information';
+                    Caption = 'teacher';
                 }
                 field(lessons; Rec.lessons)
                 {
                     ToolTip = 'lessons information';
+                    caption = 'lessons';
                 }
             }
         }

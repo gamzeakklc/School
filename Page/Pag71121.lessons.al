@@ -15,23 +15,29 @@ page 71121 lessons
             {
                 field(LessonsID; Rec.LessonsID)
                 {
-
+                    Caption = 'lessons id.';
+                    ApplicationArea = all;
                 }
                 field(LessonCredit; Rec.LessonCredit)
                 {
-
+                    Caption = 'lessons credit.';
+                    ApplicationArea = all;
                 }
                 field(LessonsName; Rec.LessonsName)
                 {
+                    Caption = 'lessons name.';
+                    ApplicationArea = all;
                 }
                 //lessons pageimin içine departman alanlarını ekledim çümkü departman lessons gözükmüyordu.
                 field(departmentID; Rec.departmentID)
                 {
-                    ToolTip = 'Specifies the value of the departmentdID field.', Comment = '%';
+                    Caption = 'department id.';
+                    ApplicationArea = all;
                 }
                 field(DepartmentName; Rec.DepartmentName)
                 {
-                    ToolTip = 'Specifies the value of the DepartmentName field.', Comment = '%';
+                    Caption = 'department name.';
+                    ApplicationArea = all;
                 }
             }
         }

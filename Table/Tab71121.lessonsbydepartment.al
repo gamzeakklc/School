@@ -7,12 +7,12 @@ table 71121 lessonsbydepartment
     {
         field(1; "lessonID"; Code[20])
         {
-            Caption = 'lessonID';
+            Caption = 'LessonID';
             TableRelation = Lessons;
         }
         field(2; "departmentID"; code[20])
         {
-            Caption = 'departmentID';
+            Caption = 'DepartmentID';
             tablerelation = department;
         }
         field(3; DepartmentName; text[250])

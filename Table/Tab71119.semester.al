@@ -9,17 +9,17 @@ table 71119 semester
     {
         field(1; "springsemester"; Date)
         {
-            Caption = 'springsemester';
+            Caption = 'Springsemester';
         }
         field(2; "autumnsemester"; Blob)
         {
             DataClassification = ToBeClassified;
-            Caption = 'autumnsemester';
+            Caption = 'Autumnsemester';
         }
         field(3; Date2DMY; Date)
         {
             DataClassification = ToBeClassified;
-            Caption = 'datetodatemonthyear';
+            Caption = 'Date2datemonthyear';
 
 
         }

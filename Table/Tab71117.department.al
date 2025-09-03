@@ -7,18 +7,18 @@ table 71117 department
     {
         field(1; "departmentdID"; code[20])
         {
-            Caption = 'depertmentID';
+            Caption = 'DepertmentID';
         }
         field(2; departmentName; code[100])
         {
             DataClassification = ToBeClassified;
-            Caption = 'departmentname';
+            Caption = 'Departmentname';
 
         }
         field(3; LessonsName; code[100])
         {
             DataClassification = ToBeClassified;
-            Caption = 'lessonname';
+            Caption = 'Lessonname';
 
         }
     }
@@ -31,6 +31,9 @@ table 71117 department
         }
 
     }
+
+
+
     fieldgroups
     {
         fieldgroup(Dropdown; departmentdID, departmentName, LessonsName)
@@ -38,4 +41,20 @@ table 71117 department
 
         }
     }
+
+    trigger OnInsert()
+    var
+        myInt: Integer;
+        NoSeries: Codeunit "No. Series";
+        schoolsetup: Record "schoolsetup";
+        student: Record student;
+    begin
+        schoolsetup.GetRecordOnce();
+        if Rec.departmentdID = '' then begin
+            schoolsetup.TestField("student No-Series");
+            Rec.departmentdID := NoSeries.GetNextNo(schoolsetup."student No-Series", WorkDate());
+            while student.get(departmentdID) do
+                Rec.departmentdID := NoSeries.GetNextNo(schoolsetup."student No-Series", WorkDate());
+        end;
+    end;
 }
