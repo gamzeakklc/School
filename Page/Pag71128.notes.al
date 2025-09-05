@@ -36,13 +36,7 @@ page 71128 notes
                 {
                     Caption = 'exam2.';
                     ApplicationArea = All;
-                    //Editable = Rec."Is Exam1 Finished";
 
-                    /* trigger OnValidate()
-                  /*   begin
-                         if rec."exam1" = 0 then
-                             Error('please enter exam1 values.');
-                     end;*/
                 }
                 field("final exam"; Rec."final exam")
                 {
@@ -59,20 +53,7 @@ page 71128 notes
                     StyleExpr = AverageStyle;//değişken
 
                 }
-                /*  field(averagepass; Rec.average)
-                  {
-                      ApplicationArea = All;
-                      Style = Favorable;//yeşil olsun
-                      StyleExpr = IsPass;//ne zaman olsun
-                      Editable = false;
-                  }
-                  field(averagefail; Rec.average)
-                  {
-                      ApplicationArea = All;
-                      Style = Unfavorable;//kırmızı olsun
-                      StyleExpr = IsFail;//ne zaman olsun
-                      Editable = false;
-                  }*/
+
                 field("letter grade"; Rec."letter grade")
                 {
                     Caption = 'letter grade.';
@@ -90,9 +71,7 @@ page 71128 notes
         IsFavorable: Boolean;
         AverageStyle: text;
         LetterStyle: text;
-        IsPass: Boolean;
-        IsFail: Boolean;
-    //validasyon sırasında sayfa güncelleme, sınav 1 yapılmadan sınav 2'yi tikleyememe vs.
+
     trigger OnAfterGetRecord()
 
     begin

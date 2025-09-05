@@ -15,24 +15,79 @@ table 71124 examsbylessons
         {
             Caption = 'LESSONS CODE';
             TableRelation = Lessons.LessonsID;
-
         }
-
         field(4; "Exam1 Date"; Date)
         {
             Caption = 'EXAM1 DATE';
-            //TableRelation = notes.exam1;
+            trigger OnValidate()
+            var
+                NotesRec: Record notes;
+            begin
+                today := today;
+                if NotesRec.Get("Lesson Code") then
+                    NotesRec.Recalculate();
+
+                if "Exam1 Date" <> 0D then begin
+                    if "Exam1 Date" < today then
+                        "Is Exam1 Finished" := true
+                    else
+                        "Is Exam1 Finished" := false;
+                end;
+                "Is Exam1 Finished" := false;
+
+            end;
         }
 
         field(5; "Exam2 Date"; Date)
         {
             Caption = 'EXAM2 DATE';
-            //TableRelation = notes.exam2;
+            trigger OnValidate()
+            var
+                NotesRec: Record notes;
+            begin
+                today := today;
+                if NotesRec.Get("Lesson Code") then
+                    NotesRec.Recalculate();
+
+                if (rec."Exam1 Date" > rec."Exam2 Date") then begin
+                    Error('EXAM1,EXAM2 tarihinden geç gerçekleşemez.');
+                end;
+                today := today;
+                if "Exam2 Date" <> 0D then begin
+                    if "Exam2 Date" < today then
+                        "Is Exam2 Finished" := true
+                    else
+                        "Is Exam2 Finished" := false;
+                end;
+                "Is Exam2 Finished" := false;
+            end;
+
         }
         field(6; "Exam3 Date"; Date)
         {
             Caption = 'EXAM3 DATE';
-            //TableRelation = notes."final exam";
+            trigger OnValidate()
+            var
+                NotesRec: Record notes;
+            begin
+                today := today;
+                if NotesRec.Get("Lesson Code") then
+                    NotesRec.Recalculate();
+
+                if (rec."Exam2 Date" > rec."Exam3 Date") then begin
+                    Error('EXAM2,EXAM3 tarihinden geç gerçekleşemez.');
+                end;
+
+                today := today;
+                if "Exam3 Date" <> 0D then begin
+                    if "Exam3 Date" < today then
+                        "Is Exam3 Finished" := true
+                    else
+                        "Is Exam3 Finished" := false;
+                end;
+                "Is Exam3 Finished" := false;
+
+            end;
         }
 
         field(7; "Is Exam1 Finished"; Boolean)
@@ -57,15 +112,35 @@ table 71124 examsbylessons
             Editable = false;
         }
 
+        field(11; "lesson no."; code[20])
+        {
+            DataClassification = ToBeClassified;
+            TableRelation = semester."lesson no";
+        }
+        field(12; semester; Integer)
+        {
+            TableRelation = semester.whichsemester;
+        }
+        field(89; whichsemester; Enum "semester")
+        {
+            FieldClass = FlowField;
+            CalcFormula = lookup(semester.whichsemester where("lesson no" = field("lesson no.")));
+            Caption = 'whichsemester';
+
+        }
 
     }
     keys
     {
-        key(PK; "Entry No.")
+        key(PK; "Entry No.", "Lesson Code")
         {
             Clustered = true;
         }
     }
+
+    var
+        today: date;
+        semester: Record semester;
 
     /* trigger OnInsert()
      var

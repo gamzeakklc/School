@@ -12,19 +12,24 @@ page 71122 semester
         {
             repeater(General)
             {
-                field(springsemester; Rec.springsemester)
+                field("lesson no"; Rec."lesson no")
                 {
-                    Caption = 'springsemester';
+                    Caption = 'lesson no';
                 }
-                field(autumnsemester; Rec.autumnsemester)
-                {
-                    Caption = 'autumnsemester';
 
-                }
-                field(Date2DMY; Rec.Date2DMY)
+                field(whichsemester; rec.whichsemester)
                 {
-                    Caption = 'DayMonthYear';
+                    ToolTip = 'Specifies the value of the whichsemester. field.', Comment = '%';
                 }
+                field(year; rec.year)
+                {
+                    ToolTip = 'Specifies the value of the lessons. field.', Comment = '%';
+                }
+                field(lessonsname; Rec.lessonsname)
+                {
+                    ToolTip = 'Specifies the value of the lessons field.', Comment = '%';
+                }
+
             }
 
         }

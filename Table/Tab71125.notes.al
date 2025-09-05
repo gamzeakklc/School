@@ -40,8 +40,6 @@ table 71125 notes
                 Recalculate();
                 CalculateLetterGrade();
 
-                if rec.exam1 = 0 then
-                    FieldError(exam1, 'please enter exam1 values.');
             end;
         }
         field(5; "final exam"; Integer)
@@ -53,9 +51,6 @@ table 71125 notes
             begin
                 Recalculate();
                 CalculateLetterGrade();
-
-                if rec.exam2 = 0 then
-                    FieldError(exam2, 'please enter exam2 values.');
             end;
         }
 
@@ -83,8 +78,8 @@ table 71125 notes
         field(8; "Is Exam1 Finished"; boolean)
         {
             Caption = 'Is Exam1 Finished?';
-            FieldClass = FlowField;
-            CalcFormula = lookup(examsbylessons."Is Exam1 Finished" where("Lesson Code" = field("Lesson No.")));
+            //   FieldClass = FlowField;
+            //  CalcFormula = lookup(examsbylessons."Is Exam1 Finished" where("Lesson Code" = field("Lesson No.")));
             Editable = false;
             trigger OnValidate()
             var
@@ -96,8 +91,8 @@ table 71125 notes
         field(9; "Is Exam2 Finished"; boolean)
         {
             Caption = 'Is Exam2 Finished?';
-            FieldClass = FlowField;
-            CalcFormula = lookup(examsbylessons."Is Exam2 Finished" where("Lesson Code" = field("Lesson No.")));
+            // FieldClass = FlowField;
+            //  CalcFormula = lookup(examsbylessons."Is Exam2 Finished" where("Lesson Code" = field("Lesson No.")));
             Editable = false;
             trigger OnValidate()
             var
@@ -109,16 +104,16 @@ table 71125 notes
         field(10; "Is Exam3 Finished"; Boolean)
         {
             Caption = 'Is Exam3 Finished?';
-            FieldClass = flowfield;
-            calcformula = lookup(examsbylessons."Is Exam3 Finished" where("Lesson Code" = field("Lesson No.")));
+            //  FieldClass = flowfield;
+            //calcformula = lookup(examsbylessons."Is Exam3 Finished" where("Lesson Code" = field("Lesson No.")));
             Editable = false;
+
             trigger OnValidate()
             var
             begin
                 Recalculate();
                 CalculateLetterGrade();
             end;
-
         }
     }
 
@@ -136,8 +131,12 @@ table 71125 notes
         Letter: Code[20];
         exambylessons: Record examsbylessons;
         notes: Record notes;
+        TodayDate: Date;
 
     begin
+        TodayDate := Today;
+
+
         if (Rec.exam1 < 0) or (Rec.exam1 > 100) then
             Error('Enter a value between 0 and 100.');
         if (Rec.exam2 < 0) or (Rec.exam2 > 100) then
@@ -156,23 +155,29 @@ table 71125 notes
         if exambylessons.FindFirst() then begin
             if xRec.exam1 <> Rec.exam1 then
                 if exambylessons."Is Exam1 Finished" = false then
-                    Error('Hoop kardeş exam1 değerine not giremezsin.');
-
+                    Error('Sinav tarihi bile gelmemisken nasil exam1 değerine puan girersin:)');
 
             if xRec.exam2 <> Rec.exam2 then begin
                 if Rec.exam1 = 0 then
-                    if not Confirm('İlk sınav notu 0, devam etmek istiyor musun?') then
+                    if not Confirm('İlk sinav notu 0, devam etmek istiyor musun?') then
                         Error('İşlem Durduruldu!');
+                if not exambylessons."Is Exam2 Finished" then //isexam2 finished tikli değilse error vericek.
+                    Error('Sinav tarihi bile gelmemisken nasil exam2 değerine puan girersin:)');
 
-                if exambylessons."Is Exam2 Finished" = false then begin
-                    Error('Hoop kardeş exam2 değerine not giremezsin.');
 
+                if xRec."final exam" <> Rec."final exam" then begin
+                    if Rec.exam2 = 0 then
+                        if not Confirm('İkinci sinav notu 0, devam etmek istiyor musun?') then
+                            Error('İşlem Durduruldu!');
+
+                    if exambylessons."Is Exam3 Finished" = false then begin
+                        Error('finalexam değerine not giremezsin.');
+                    end;
                 end;
             end;
         end;
-        //exambylessons.CalcFields("Is Exam1 Finished", "Is Exam2 Finished", "Is Exam3 Finished")
-    end;
 
+    end;
 
     procedure CalculateLetterGrade()
     var
@@ -204,13 +209,6 @@ table 71125 notes
         "LetterGrade" := HarfNotu;
     end;
 
-    /*  procedure Next()
-      var
-          exambylessons: Record examsbylessons;
-          notes: Record notes;
-      begin
-          notes.CalcFields("Is Exam1 Finished", "Is Exam2 Finished", "Is Exam3 Finished")
-      end;*/
 }
 
 

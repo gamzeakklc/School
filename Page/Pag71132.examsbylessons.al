@@ -21,11 +21,14 @@ page 71132 examsbylessons
                 {
                     Caption = 'Exam1 Date';
                     ToolTip = 'Specifies the value of the Sinav Tarihi field.', Comment = '%';
+
+
                 }
                 field("Exam2 Date"; Rec."Exam2 Date")
                 {
                     Caption = 'Exam2 Date';
                     ToolTip = 'Specifies the value of the EXAM2 DATE field.', Comment = '%';
+
                 }
                 field("Exam3 Date"; Rec."Exam3 Date")
                 {
@@ -55,9 +58,17 @@ page 71132 examsbylessons
                 field("Is Exam3 Finished"; Rec."Is Exam3 Finished")
                 {
                     ToolTip = 'Specifies the value of the Is Exam3 Finished? field.', Comment = '%';
-                    Caption = 'Is Exam1 Finished';
+                    Caption = 'Is Exam3 Finished';
                     ApplicationArea = all;
                     Editable = false;
+                }
+                field("lesson no."; Rec."lesson no.")
+                {
+                    ToolTip = 'Specifies the value of the lesson no. field.', Comment = '%';
+                }
+                field(whichsemester; Rec.whichsemester)
+                {
+                    ToolTip = 'Specifies the value of the whichsemester field.', Comment = '%';
                 }
 
 
@@ -69,7 +80,7 @@ page 71132 examsbylessons
         IsExam2FinishedVar: Boolean;
         IsExam3FinishedVar: Boolean;
 
-    trigger OnAfterGetRecord()
+    trigger OnAfterGetCurrRecord()
     var
         TodayDate: Date;
         IsFinished: Boolean;
@@ -81,8 +92,7 @@ page 71132 examsbylessons
         IsFinished := false;
         if (Rec."Exam1 Date" < today) then begin
             rec."Is Exam1 Finished" := true;
-            //rec.Modify();
-            //CurrPage.Update(); sürekli refresh attığın için koun if kısmında takılı kalıyor.
+
         end;
         if (Rec."Exam2 Date" < today) then begin
             rec."Is Exam2 Finished" := true
@@ -94,11 +104,6 @@ page 71132 examsbylessons
 
         if Rec.Modify() then;
 
-        // Rec.CalcFields("Is Exam1 Finished", "Is Exam2 Finished", "Is Exam3 Finished");
-
-        IsExam1FinishedVar := Rec."Is Exam1 Finished";
-        IsExam2FinishedVar := rec."Is Exam2 Finished";
-        IsExam3FinishedVar := rec."Is Exam3 Finished";
     end;
 
 }
