@@ -89,11 +89,9 @@ table 71125 notes
             trigger OnValidate()
             var
             begin
-                //  CalcFields("Is Exam1 Finished");
                 Recalculate();
                 CalculateLetterGrade();
             end;
-            //databasede oluşmaz çağıramam,calcfields .
         }
         field(9; "Is Exam2 Finished"; boolean)
         {
@@ -104,8 +102,6 @@ table 71125 notes
             trigger OnValidate()
             var
             begin
-                //   CalcFields("Is Exam2 Finished");
-
                 Recalculate();
                 CalculateLetterGrade();
             end;
@@ -119,8 +115,6 @@ table 71125 notes
             trigger OnValidate()
             var
             begin
-
-                //  CalcFields("Is Exam3 Finished");
                 Recalculate();
                 CalculateLetterGrade();
             end;
@@ -157,7 +151,26 @@ table 71125 notes
             (Rec."final exam" * 0.5);
 
         Rec."average" := Weighted;
-        exambylessons.CalcFields("Is Exam1 Finished", "Is Exam2 Finished", "Is Exam3 Finished")
+
+        exambylessons.SetRange("Lesson Code", Rec."Lesson No.");
+        if exambylessons.FindFirst() then begin
+            if xRec.exam1 <> Rec.exam1 then
+                if exambylessons."Is Exam1 Finished" = false then
+                    Error('Hoop kardeş exam1 değerine not giremezsin.');
+
+
+            if xRec.exam2 <> Rec.exam2 then begin
+                if Rec.exam1 = 0 then
+                    if not Confirm('İlk sınav notu 0, devam etmek istiyor musun?') then
+                        Error('İşlem Durduruldu!');
+
+                if exambylessons."Is Exam2 Finished" = false then begin
+                    Error('Hoop kardeş exam2 değerine not giremezsin.');
+
+                end;
+            end;
+        end;
+        //exambylessons.CalcFields("Is Exam1 Finished", "Is Exam2 Finished", "Is Exam3 Finished")
     end;
 
 

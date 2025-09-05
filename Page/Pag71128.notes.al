@@ -36,7 +36,7 @@ page 71128 notes
                 {
                     Caption = 'exam2.';
                     ApplicationArea = All;
-                    Editable = Rec."Is Exam1 Finished";
+                    //Editable = Rec."Is Exam1 Finished";
 
                     /* trigger OnValidate()
                   /*   begin

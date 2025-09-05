@@ -21,38 +21,38 @@ table 71124 examsbylessons
         field(4; "Exam1 Date"; Date)
         {
             Caption = 'EXAM1 DATE';
-            TableRelation = notes.exam1;
+            //TableRelation = notes.exam1;
         }
 
         field(5; "Exam2 Date"; Date)
         {
             Caption = 'EXAM2 DATE';
-            TableRelation = notes.exam2;
+            //TableRelation = notes.exam2;
         }
         field(6; "Exam3 Date"; Date)
         {
             Caption = 'EXAM3 DATE';
-            TableRelation = notes."final exam";
+            //TableRelation = notes."final exam";
         }
 
         field(7; "Is Exam1 Finished"; Boolean)
         {
-            FieldClass = FlowField;
-            CalcFormula = lookup(notes."Is Exam1 Finished" where("Lesson No." = field("Lesson Code")));
+            // FieldClass = FlowField;
+            // CalcFormula = lookup(notes."Is Exam1 Finished" where("Lesson No." = field("Lesson Code")));
             Caption = ' Is Exam1 Finished ?';
             Editable = false;
         }
         field(8; "Is Exam2 Finished"; Boolean)
         {
-            FieldClass = FlowField;
-            CalcFormula = lookup(notes."Is Exam2 Finished" where("Lesson No." = field("Lesson Code")));
+            //    FieldClass = FlowField;
+            //    CalcFormula = lookup(notes."Is Exam2 Finished" where("Lesson No." = field("Lesson Code")));
             Caption = 'Is Exam2 Finished?';
             Editable = false;
         }
         field(9; "Is Exam3 Finished"; Boolean)
         {
-            FieldClass = FlowField;
-            CalcFormula = lookup(notes."Is Exam3 Finished" where("Lesson No." = field("Lesson Code")));
+            //   FieldClass = FlowField;
+            //   CalcFormula = lookup(notes."Is Exam3 Finished" where("Lesson No." = field("Lesson Code")));
             Caption = 'Is Exam3 Finished?';
             Editable = false;
         }

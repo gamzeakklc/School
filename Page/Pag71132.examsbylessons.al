@@ -77,22 +77,24 @@ page 71132 examsbylessons
         examsbylessons: Record examsbylessons;
 
     begin
-        // TodayDate := Today();
-        /*   IsFinished := false;
-           if (Rec."Exam1 Date" < today) then begin
-               rec."Is Exam1 Finished" := true;
-               //rec.Modify();
-               //CurrPage.Update(); sürekli refresh attığın için koun if kısmında takılı kalıyor.
-           end;
-           if (Rec."Exam2 Date" < today) then begin
-               rec."Is Exam2 Finished" := true
-           end;
+        TodayDate := Today();
+        IsFinished := false;
+        if (Rec."Exam1 Date" < today) then begin
+            rec."Is Exam1 Finished" := true;
+            //rec.Modify();
+            //CurrPage.Update(); sürekli refresh attığın için koun if kısmında takılı kalıyor.
+        end;
+        if (Rec."Exam2 Date" < today) then begin
+            rec."Is Exam2 Finished" := true
+        end;
 
-           if (rec."Exam3 Date" < Today) then begin
-               rec."Is Exam3 Finished" := true
-           end;*/
+        if (rec."Exam3 Date" < Today) then begin
+            rec."Is Exam3 Finished" := true
+        end;
 
-        Rec.CalcFields("Is Exam1 Finished", "Is Exam2 Finished", "Is Exam3 Finished");
+        if Rec.Modify() then;
+
+        // Rec.CalcFields("Is Exam1 Finished", "Is Exam2 Finished", "Is Exam3 Finished");
 
         IsExam1FinishedVar := Rec."Is Exam1 Finished";
         IsExam2FinishedVar := rec."Is Exam2 Finished";
